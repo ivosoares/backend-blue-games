@@ -6,8 +6,10 @@ const mongoose = require('mongoose');
 // url da conexao = mongodb://servidor:porta/
 // useNewUrlParser = fala pro mongo db trabalhar com o novo sistema de url
 
-const Conn = () => {
-  mongoose.connect('mongodb://localhost:27017/loja', {
+const Conn = (url, user, pass, data) => {
+  mongoose.connect(`${url}/${data}`, {
+    user: user,
+    pass: pass,
     useNewUrlParser: true
   }).then(() => {
     console.log('MONGO DB CONECTADO')

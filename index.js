@@ -1,3 +1,8 @@
+// inciar a configuracao da variavel de ambiente
+if(process.env.NODE_ENV !== 'production') {
+  require('dotenv').config();
+}
+
 // importar as bibliotecas/libs necessarias
 const express = require('express');
 const cors = require('cors');
@@ -14,8 +19,14 @@ app.use(cors());
 
 app.use("/games", gamesRouter);
 
+
+// busco os dados das variaveis de ambiente
+const db_url = process.env.DB_URL;
+const db_user = process.env.DB_USER;
+const db_pass = process.env.DB_PASS;
+const db_data = process.env.DB_DATA;
 // chamo a conexao com o banco de dados
-Conn();
+Conn(db_url, db_user, db_pass, db_data);
 
 // defino a porta e iniclizo o servidor
 const port = 3001;
